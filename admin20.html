@@ -1,0 +1,968 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="Cache-Control" content="no-store" />
+      <link rel="stylesheet" type="text/css" href="css/admin/admin.css">
+      <link rel='stylesheet prefetch' href='css/admin/datatable.css'>
+      <!--Data Table css-->
+      <link rel="icon" href="" type="image/gif" sizes="16x16">
+      <script src="js/jquery.min.js"></script>
+      <script src="js/highcharts.js"></script>
+      <script src="js/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+      <script type='text/javascript' src='js/jquery.mousewheel.min.js'></script>   
+      <script type='text/javascript' src='js/admin/admin4.js'></script>   
+      
+      <!--Head contains Scripts and CSS-->
+   </head>
+   <body onload = "changeMenu('dashboard');changeTab('allt');showHide();">
+      <a href="#">
+         <div id="pane-toggle" onclick="showPane();google.maps.event.trigger(map2, 'resize');">
+            <center><img src="img/admin/arrow-left.png" width="30"></center>
+         </div>
+      </a>
+      <a href="#">
+         <div id="add-borewell-button" onclick="no1=0;no2=0;document.getElementById('add-borewell-modal').style.display='block'; document.getElementById('add-field').innerHTML='';document.getElementById('noField').value=no2;">
+            +Add a Borewell
+         </div>
+      </a>
+      <div id = "all-transaction-modal">
+         <div class="modal-container">
+            <div class = "modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('all-transaction-modal');">x</span></a></div>
+               <div class="vertical-75">
+                  <div class="horizontal-30">
+                     <center>
+                        <div class="panel-tab">
+                           <table width="60%">
+                              <tr>
+                                 <td><img src="img/admin/farmer.png" width="30"></td>
+                                 <a href="#"><td id="transaction-name"></td></a>
+                              </tr>
+                           </table>
+                        </div>
+                        </a>
+                     </center>
+                     <br/><br/>
+                     <div class="t-details">
+                        <center>
+                           <table id="details-table">
+                              <tr>
+                                 <td>IMEI No :</td>
+                                 <td id="imei-no">#122321393649230</td>
+                              </tr>
+                              <tr>
+                                 <td>UID :</td>
+                                 <td id="farmer-uid">#ABC23720</td>
+                              </tr>
+                              <tr>
+                                 <td>Date :</td>
+                                 <td id="transaction-date">6/1/2017</td>
+                              </tr>
+                              <tr>
+                                 <td>Duration :</td>
+                                 <td id="t-duration">6 Hours 18 minutes</td>
+                              </tr>
+                           </table>
+                           <br/>
+                           <center><span id="cost-modal">Rs. 200</span></center>
+                           <br/><br/>
+                           <div id="map1" style="width:200px; height:170px;"></div>
+                        </center>
+                     </div>
+                  </div>
+                  <div class="horizontal-70">
+                  <div id = "del">
+                     <div id="containerSync">
+                        <div id = "voltage" style="height: 120px; min-width:70%"></div>
+                        <div id = "current" style="height: 120px; min-width:70%""></div>
+                        <div id = "flow" style="height: 120px; min-width:70%""></div>
+                        <div id = "power" style="height: 120px; min-width:70%""></div>
+                        <button class = "buttonChange" style = "display: none;">Change Content</button>
+                     </div>
+                     
+                  </div>
+                  </div>
+               </div>
+               <div class = "vertical-25">
+                  <table id = "cards-table-t" style="border-spacing: 20px;">
+                     <tr id = "card-table">
+                        
+
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id = "farmer-details-modal">
+         <div class="modal-container">
+            <div class="modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('farmer-details-modal');">x</span></a></div>
+               <div class="form">
+
+                  <h1>Farmer Details :</h1>
+
+                  <center><img src="img/admin/user.png" width="150"></center><br/><br/>
+                  <div style="font-size: 15pt;">
+                  <table width="100%">
+                     <tr>
+                        <td>1)</td>
+                        <td>Name:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>2)</td>
+                        <td>Irrigation Cost:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>3)</td>
+                        <td>Revenue:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>4)</td>
+                        <td>Buy Seeds:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>5)</td>
+                        <td>Adhaar Card:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>6)</td>
+                        <td>Income from Land:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>7)</td>
+                        <td>Balance:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>8)</td>
+                        <td>Type of House:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>9)</td>
+                        <td>UID:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>10)</td>
+                        <td>Borewell:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>11)</td>
+                        <td>Yearly Income:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>12)</td>
+                        <td>Where to sell:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>13)</td>
+                        <td>Address:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>14)</td>
+                        <td>Govt. Card Holder:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>15)</td>
+                        <td>Land Holding:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>16)</td>
+                        <td>State:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>17)</td>
+                        <td>District:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>18)</td>
+                        <td>Place of Registration:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>19)</td>
+                        <td>Crops:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>20)</td>
+                        <td>Father Name:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>21)</td>
+                        <td>Fertilizer Dealer:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                     <tr>
+                        <td>22)</td>
+                        <td>Contact No:</td>
+                        <td class="f-details">Abhinav</td>
+                     </tr>
+                  </table>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--End of All-Transactions Modal-->
+      <div id="add-farmer-modal">
+         <div class="modal-container">
+            <div class="modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('add-farmer-modal');">x</span></a></div>
+               <div class="form">
+                  <div class="form-heading">Farmer Details</div>
+                  <hr>
+                  <br>
+                  <div class = "form-content">
+                     <center>
+                        <form action = "">
+                           <table width="100%">
+                              <tr>
+                                 <td>1)</td>
+                                 <td>UID:</td>
+                                 <td><input type="textbox" class="t-form" name="uid"></td>
+                              </tr>
+                              <tr>
+                                 <td>2)</td>
+                                 <td>Name:</td>
+                                 <td><input type="textbox" class="t-form" name="fname"></td>
+                              </tr>
+                              <tr>
+                                 <td>3)</td>
+                                 <td>Adhaar Card Number:</td>
+                                 <td><input type="textbox" class="t-form" name="adhaarno"></td>
+                              </tr>
+                              <tr>
+                                 <td>4)</td>
+                                 <td>Date of Registration:</td>
+                                 <td><input type="textbox" class="t-form" name="dateofr"></td>
+                              </tr>
+                              <tr>
+                                 <td>5)</td>
+                                 <td>State:</td>
+                                 <td>
+                                    <select class="s-form"  name="fstate">
+                                       <option value="bihar">Bihar</option>
+                                       <option value="up">Uttar Pradesh</option>
+                                       <option value="WB">West Bengal</option>
+                                    </select>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>6)</td>
+                                 <td>District:</td>
+                                 <td>
+                                    <select class="s-form" name="fdistrict">
+                                       <option value="gg">Gopal Ganj</option>
+                                       <option value="up">District 1</option>
+                                       <option value="WB">District 2</option>
+                                    </select>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>7)</td>
+                                 <td>Contact No.:</td>
+                                 <td><input type="textbox"  class="t-form" name="cno"></td>
+                              </tr>
+                              <tr>
+                                 <td>8)</td>
+                                 <td>Father's Name:</td>
+                                 <td><input type="textbox" class="t-form" name="fathernm"></td>
+                              </tr>
+                              <tr>
+                                 <td>9)</td>
+                                 <td>Address:</td>
+                                 <td><textarea class="ad-form" name="fadd"></textarea></td>
+                              </tr>
+                              <tr>
+                                 <td>10)</td>
+                                 <td>Land:</td>
+                                 <td><input type="textbox" class="t-form" name="fland"></td>
+                              </tr>
+                              <tr>
+                                 <td>11)</td>
+                                 <td>Type of House:</td>
+                                 <td>
+                                    <input type="radio" name="house" style="width:20px; height:20px;" value="kaccha" class="rad">Kaccha&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="house" style="width:20px; height:20px;" value="pakka" class="rad">Pakka
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>12)</td>
+                                 <td>Income From Land per Annum:</td>
+                                 <td>
+                                    <select class="s-form" name="income">
+                                       <option value="2000">Rs. 2000 to 5000</option>
+                                       <option value="5000">Rs. 5000 to 10000</option>
+                                       <option value="10000">Rs. 10000 to 30000</option>
+                                       <option value="30000">More than 30000</option>
+                                    </select>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>13)</td>
+                                 <td>Govt. Card Holder:</td>
+                                 <td>
+                                    <input type="radio" name="gch" style="width:20px; height:20px;" value="Yes" class="rad">Yes&nbsp;&nbsp;&nbsp; 
+                                    <input type="radio" name="gch" style="width:20px; height:20px;" value="No" class="rad">No
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>14)</td>
+                                 <td>Crops:</td>
+                                 <td>
+                        <form action="">
+                        <input type="checkbox" style="width:20px; height:20px;" name="crop" value="rice">Rice&nbsp;&nbsp;
+                        <input type="checkbox" style="width:20px; height:20px;" name="crop" value="wheat">Wheat&nbsp;&nbsp;
+                        <input type="checkbox" style="width:20px; height:20px;" name="crop" value="potato">Potato&nbsp;&nbsp;
+                        <input type="checkbox" style="width:20px; height:20px;" name="crop" value="corn">Corn&nbsp;&nbsp;
+                        </form>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>15)</td>
+                        <td>Yearly Income:</td>
+                        <td>
+                        <select class="s-form" name="yincome">
+                        <option value="2000">Rs. 2000 to 5000</option>
+                        <option value="5000">Rs. 5000 to 10000</option>
+                        <option value="10000">Rs. 10000 to 30000</option>
+                        <option value="30000">More than 30000</option>
+                        </select>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>16)</td>
+                        <td>Seed Supplier:</td>
+                        <td><input type="textbox" class="t-form" name="seedsup"></td>
+                        </tr>
+                        <tr>
+                        <td>17)</td>
+                        <td>Fertilizer Supplier:</td>
+                        <td><input type="textbox" class="t-form" name="fertsup"></td>
+                        </tr>
+                        <tr>
+                        <td>18)</td>
+                        <td>Place of Registration:</td>
+                        <td><input type="textbox" class="t-form" name="placeofreg"></td>
+                        </tr>
+                        <tr>
+                        <td>19)</td>
+                        <td>No of Members:</td>
+                        <td><input type="textbox" class="t-form" name="memNo" id="memNo" value=0 readonly></td>
+                        </tr>
+                        </table><!-- End of Basic Table-->
+                        <hr/>
+                        <div id="add-options"></div>
+                     </center>
+                     <table width="100%">
+                        <tr>
+                           <td>
+                              <a href="#">
+                                 <div class="add-button-modal" onclick="newFarmer();">+Add a Member</div>
+                              </a>
+                           </td>
+                           <td>
+                              <a href="#">
+                                 <div class="add-button-modal" style="float: left;" onclick="">Submit</div>
+                              </a>
+                           </td>
+                        </tr>
+                     </table>
+                     </form>
+                     <!-- Submit the form -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End of Add a Farmer Modal-->
+      <div id="add-patvan-modal">
+         <!--start of add a patvan modal-->
+         <div class="modal-container">
+            <div class="modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('add-patvan-modal');">x</span></a></div>
+               <div class="form">
+                  <div class="form-heading">Patvan Details</div>
+                  <hr>
+                  <br>
+                  <div class = "form-content">
+                     <center>
+                        <table width="100%">
+                           <tr>
+                              <td>1) </td>
+                              <td>IMEI Number:</td>
+                              <td><input type ="text" class="t-form"></td>
+                           </tr>
+                           <tr>
+                              <td>2) </td>
+                              <td>Patvan ID:</td>
+                              <td><input type ="text" class="t-form"></td>
+                           </tr>
+                           <tr>
+                              <td>3) </td>
+                              <td>Patvan Stamp:</td>
+                              <td><input type ="text" class="t-form"></td>
+                           </tr>
+                           <tr>
+                              <td>4) </td>
+                              <td>Rate:</td>
+                              <td><input type ="text" class="t-form"></td>
+                           </tr>
+                        </table>
+                        <!-- End of Basic Table-->
+                        <hr/>
+                     </center>
+                     <table width="100%">
+                        <tr>
+                           <td>
+                              <a href="#">
+                                 <div class="add-button-modal" style="float: left;" onclick="">Submit</div>
+                              </a>
+                           </td>
+                        </tr>
+                     </table>
+                     <!-- Submit the form -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--End of add a patvan Modal-->
+      <div id="add-borewell-modal">
+         <!--start of add a borewell modal-->
+         <div class="modal-container">
+            <div class="modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('add-borewell-modal');">x</span></a></div>
+               <div class="form">
+                  <div class="form-heading">Add Borewell</div>
+                  <hr>
+                  <br>
+                  <div class = "form-content">
+                     <center>
+                        <table width="100%">
+                           <tr>
+                              <td>1) </td>
+                              <td>ID:</td>
+                              <td><input type ="text" class="t-form" placeholder="Self Generated" name="bId"></td>
+                           </tr>
+                           <tr>
+                              <td>2) </td>
+                              <td>Community ID:</td>
+                              <td>
+                                 <select class="s-form" name="bcId">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                 </select>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>3) </td>
+                              <td>Sub Community:</td>
+                              <td>
+                                 <select class="s-form"  name="bscId">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                 </select>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>4) </td>
+                              <td>Land Mark:</td>
+                              <td><input type ="text" class="t-form" name="bLandMark"></td>
+                           </tr>
+                           <tr>
+                              <td>5) </td>
+                              <td>Lattitude:</td>
+                              <td><input type ="text" class="t-form" name="bLat"></td>
+                           </tr>
+                           <tr>
+                              <td>6) </td>
+                              <td>Longitude:</td>
+                              <td><input type ="text" class="t-form" name="bLon"></td>
+                           </tr>
+                           <tr>
+                              <td>7) </td>
+                              <td>Well Size:</td>
+                              <td><input type ="text" class="t-form" name="bWell"></td>
+                           </tr>
+                           <tr>
+                              <td>8) </td>
+                              <td>Water Depth:</td>
+                              <td><input type ="text" class="t-form" name="bWater"></td>
+                           </tr>
+                           <tr>
+                              <td>9) </td>
+                              <td>Boring Depth:</td>
+                              <td><input type ="text" class="t-form" name="bBoreD"></td>
+                           </tr>
+                           <tr>
+                              <td>10) </td>
+                              <td>Filtering:</td>
+                              <td><input type ="radio" name="bFilter" value="yes">Yes&nbsp;&nbsp;<input type ="radio" name="bFilter" value="No">No</td>
+                           </tr>
+                           <tr>
+                              <td>11) </td>
+                              <td>Owner:</td>
+                              <td><input type ="text" name="bOwner" class="t-form"></td>
+                           </tr>
+                           <tr>
+                              <td>11) </td>
+                              <td>No of Fields:</td>
+                              <td><input type ="text" class="t-form" name="noField" id="noField" value="0" readonly></td>
+                           </tr>
+                        </table>
+                        <!-- End of Basic Table-->
+                        <br/>
+                        <div id="add-field" value="0" name="add"></div>
+                        <button id="add-field-button" onclick="newField();">add a field</button>
+                        <br/>
+                        <hr/>
+                     </center>
+                     <table width="100%">
+                        <tr>
+                           <td>
+                              <a href="#">
+                                 <div class="add-button-modal" style="float: left;" onclick="">Submit</div>
+                              </a>
+                           </td>
+                        </tr>
+                     </table>
+                     <!-- Submit the form -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--End of add a borewell Modal-->
+      <div id="farmer-profile-modal">
+         <!--start of add a farmer profile modal-->
+         <div class="modal-container">
+            <div class="modal-content">
+               <div class="close-option"><a href="#"><span class="close-button" onclick="closeModal('farmer-profile-modal');">x</span></a></div>
+               <div class="farmer-profile">
+                  <div class="form-heading" style="color: #c52434">
+                     Farmer Information
+                  </div>
+                  <hr/>
+                  <div class="modal-content">
+                     <div class="modal-thirty">
+                        <div class="modal-profile-pic">
+                           <img src="">
+                        </div>
+                        <br/>
+                        <div id="map3" style="width:100; height:280px;"></div>
+                     </div>
+                     <div class="modal-seventy">
+                        <table width="100%">
+                           <tr>
+                              <td>UID:</td>
+                              <td>#12873352</td>
+                           </tr>
+                           <tr>
+                              <td>Name:</td>
+                              <td>Ramu Kaka</td>
+                           </tr>
+                           <tr>
+                              <td>Revenue:</td>
+                              <td>Rs 2000</td>
+                           </tr>
+                           <tr>
+                              <td>Adhaar Card No:</td>
+                              <td>82620103743722</td>
+                           </tr>
+                           <tr>
+                              <td>Date of Registration:</td>
+                              <td>20/12/2017</td>
+                           </tr>
+                           <tr>
+                              <td>Balance:</td>
+                              <td>Rs. 200</td>
+                           </tr>
+                           <tr>
+                              <td>State:</td>
+                              <td>Bihar</td>
+                           </tr>
+                           <tr>
+                              <td>District:</td>
+                              <td>Gopal Ganj</td>
+                           </tr>
+                           <tr>
+                              <td>Contact No:</td>
+                              <td>9874561234</td>
+                           </tr>
+                           <tr>
+                              <td>Father's Name:</td>
+                              <td>Chachu Kaka</td>
+                           </tr>
+                           <tr>
+                              <td>Address:</td>
+                              <td>234, Gopalganj, Bihar-102623</td>
+                           </tr>
+                           <tr>
+                              <td>Land Holding</td>
+                              <td>10 acre</td>
+                           </tr>
+                           <tr>
+                              <td>Type of House:</td>
+                              <td>Kaccha</td>
+                           </tr>
+                           <tr>
+                              <td>Income from Land:</td>
+                              <td>Rs. 40000</td>
+                           </tr>
+                           <tr>
+                              <td>Government Card Holder:</td>
+                              <td>No</td>
+                           </tr>
+                           <tr>
+                              <td>Crops:</td>
+                              <td>Rice, wheat, Potato</td>
+                           </tr>
+                           <tr>
+                              <td>Yearly Income:</td>
+                              <td>Rs. 100000</td>
+                           </tr>
+                           <tr>
+                              <td>Seed Supplier:</td>
+                              <td>man1</td>
+                           </tr>
+                           <tr>
+                              <td>Fertilizer Supply:</td>
+                              <td>Man2</td>
+                           </tr>
+                           <tr>
+                              <td>Place of Registration:</td>
+                              <td>Bihar</td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--End of Add a Farmer-Profile Modal-->
+      <div class="navbar-bound">
+         <div class = "navbar">
+            <ul id = "nav">
+               <li id = "navli"><img src = "img/logo.png" id = "logo"/></li>
+            </ul>
+         </div>
+         <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Signed in as <strong>Administrator</strong>&nbsp;&nbsp;<img src = "img/icon1.png" width = "10"/></button>
+            <div id="myDropdown" class="dropdown-content">
+               <a href="#home">Home&nbsp;&nbsp;<img src="img/admin/hm.png" width="10"/></a>
+               <a href="#about">Account Settings&nbsp;<img src="img/admin/stn.png" width="20"/></a>
+               <hr/>
+               <a href="#contact">Log Out&nbsp;&nbsp;<img src="img/admin/lo.png" width="15"/></a>
+            </div>
+         </div>
+      </div>
+      <div class = "containment">
+         <!--Containment for separator divisions-->
+         <div class = "twenty">
+            <!--20% width for Left Panel-->
+            <center>
+               <table class = "panel-text" width = "100%">
+                  <tr>
+                     <td>
+                        <div class="panel-tab-dashboard">
+                           <a href = "">
+                              <table width="100%">
+                                 <tr onclick="changeMenu('dashboard');">
+                                    <td><img src = "img/admin/dashboard-icon2.png" width="30"></td>
+                                    <td>Dashboard</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+               </table>
+               <br><br><br/>
+               <table class = "panel-text2" width="70%">
+                  <tr onclick="changeMenu('patvan');">
+                     <td>
+                        <div class="panel-tab">
+                           <a href = "#">
+                              <table width="100%" onclick="fillPatvan();">
+                                 <tr>
+                                    <td width="30%"><img src = "img/admin/patvan2.png" width="40"></td>
+                                    <td>Patvans</td>
+                                    <td>(<span class="notifications" id="patvan-count">10</span>)</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+                  <tr onclick="fillBorewell();changeMenu('borewell');google.maps.event.trigger(map2, 'resize');">
+                     <td>
+                        <div class="panel-tab">
+                           <a href = "#">
+                              <table width="100%">
+                                 <tr>
+                                    <td width="30%"><img src = "img/admin/borewell.png" width="35"></td>
+                                    <td>Borewells</td>
+                                    <td>(<span class="notifications" id="borewell-count">43</span>)</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+                  <tr onclick="fillFarmer();changeMenu('farmer');">
+                     <td>
+                        <div class="panel-tab">
+                           <a href = "#">
+                              <table width="100%">
+                                 <tr>
+                                    <td width="30%"><img src = "img/admin/farmer.png" width="35"></td>
+                                    <td>Farmers</td>
+                                    <td>(<span class="notifications" id="farmer-count">28</span>)</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+                  <tr onclick="changeMenu('booking');">
+                     <td>
+                        <div class="panel-tab">
+                           <a href = "#">
+                              <table width="100%" onclick="fillBooking();">
+                                 <tr>
+                                    <td width="30%"><img src = "img/admin/bookings.png" width="35"></td>
+                                    <td>Bookings</td>
+                                    <td>(<span class="notifications" id="bookings-count">12</span>)</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+                  <tr onclick="changeMenu('transaction'); fillTransaction(); fillAllTP(); fillAllTF();fillAllTB(); google.maps.event.trigger(map1, 'resize');">
+                     <td>
+                        <div class="panel-tab">
+                           <a href = "#">
+                              <table width="100%">
+                                 <tr>
+                                    <td width="30%"><img src = "img/admin/rupee.png" width="35"></td>
+                                    <td>Transactions</td>
+                                    <td>(<span class="notifications" id="transaction-count">5</span>)</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+               </table>
+               <br/>
+               <br/><br/>
+               <table class = "panel-text" width = "100%">
+                  <tr>
+                     <td>
+                        <div class="panel-tab-dashboard">
+                           <a href = "dashboard20.html">
+                              <table width="100%">
+                                 <tr>
+                                    <td><img src = "img/admin/iconlive.png" width="40"></td>
+                                    <td>Live Devices</td>
+                                 </tr>
+                        </div>
+                        </table></a>
+                     </td>
+                  </tr>
+               </table>
+            </center>
+         </div>
+         <div class = "eighty">
+            <!--80% width for content-->
+            <div id = "dashboard-home">
+               <div class = "map-container">
+                  <div id="map" style="width:100; height:300px;"></div>
+               </div>
+               <div id ="graph-data">
+                  <center>
+                     <table width ="100%">
+                        <tr>
+                           <!--<td><div id="container1" style="height: 400px; margin: 0 auto"></div></td>-->
+                           <td width="50%">
+                              <center>
+                                 <div id="container2" style="height: 315px; width:100%; margin: 0 auto"></div>
+                              </center>
+                           </td>
+                           <td width="50%">
+                              <center>
+                                 <div id="container1" style="height: 315px; width:100%; margin: 0 auto"></div>
+                              </center>
+                           </td>
+                        </tr>
+                     </table>
+                  </center>
+               </div>
+            </div>
+            <!--End of Dashboard-Home-->
+            <div id="patvan-menu">
+               <div class= "add-div">
+                  <a href="#">
+                     <div class = "add-button" onclick="document.getElementById('add-patvan-modal').style.display='block';">+ Add a Pat-Van</div>
+                  </a>
+               </div>
+               <div id="patvan-table">
+                  <table id="example12" class="display" cellspacing="0" width="100%"></table>
+               </div>
+            </div>
+            <!--End of Patvan-menu -->
+            <div id="borewell-menu">
+               <div id="map2" style="width:100; height:620px;"></div>
+               <div id = "show-hide-button" onclick="showHide();">
+                  <a href="#">
+                     <center>
+                        <table>
+                           <tr>
+                              <td id = "img-u-d"><img src="img/admin/arrow-down.png" width="30">&nbsp;&nbsp;&nbsp;</td>
+                              <td><span id="link-tur">Hide Table</span></td>
+                           </tr>
+                        </table>
+                     </center>
+                  </a>
+               </div>
+               <div id = "borewell-dragup">
+                  <div id = "borewell-table" width="100%">
+                     <table id="example7" class="display" cellspacing="0" width="100%"></table>
+                  </div>
+               </div>
+            </div>
+            <!--End of borewell-menu -->
+            <div id="farmers-menu">
+               <div class= "add-div">
+                  <a href="#">
+                     <div class = "add-button" onclick="no1 =0; no2=0;document.getElementById('add-farmer-modal').style.display='block'; document.getElementById('add-options').innerHTML=''; document.getElementById('memNo').value=no1;">+ Add a Farmer</div>
+                  </a>
+               </div>
+               <div id="farmer-table">
+                  <table id="example8" class="display" cellspacing="0" width="100%"></table>
+               </div>
+            </div>
+            <!--End of farmers-menu -->
+            <div id="booking-menu">
+               <div id="bookings-table">
+                  <table id="example" class="display" cellspacing="0" width="100%"></table>
+               </div>
+            </div>
+
+            <!--End of booking-menu -->
+            <div id="transaction-menu">
+               <br> 
+               <div class = "on-tabs">
+                  <table width="85%">
+                     <tr>
+                        <td width="60px"></td>
+                        <td>
+                           <a href="#">
+                              <div class="transaction-tabs"  onclick="changeTab('allt');">All Transactions</div>
+                           </a>
+                        </td>
+                        <td>
+                           <a href="#">
+                              <div class="transaction-tabs" onclick="changeTab('borewellt');">Borewell</div>
+                           </a>
+                        </td>
+                        <td>
+                           <a href="#">
+                              <div class="transaction-tabs" onclick="changeTab('farmert');">Farmer</div>
+                           </a>
+                        </td>
+                        <td>
+                           <a href="#">
+                              <div class="transaction-tabs" onclick="changeTab('patvant');">Patvan</div>
+                           </a>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <div id="all-t">
+                  <table id="example2" class="display" cellspacing="0" width="100%"></table>
+               </div>
+               <div id="borewell-t">
+                  
+                  <table id="example3" class="display" cellspacing="0" width="100%"></table>
+               </div>
+               <div id="farmer-t">
+                  <table id="example4" class="display" cellspacing="0" width="100%"></table>
+               </div>
+               <div id="patvan-t">
+               
+                  <table id="example5" class="display" cellspacing="0" width="100%"></table>
+                     
+               </div>
+            </div>
+            <!--End of transaction-menu -->
+         </div>
+         <!-- end of eighty -->
+      </div>
+      <!-- end of containment -->
+      <script src='http://code.jquery.com/ui/1.11.0/jquery-ui.js'></script>
+      <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+      <script src="js/admin/dataTables2.js"></script> 
+          <!--JavaScript for Data Tables-->
+      <!--JavaScript to initialize maps-->
+      <script>                                        
+         function myMap() {
+           var mapCanvas1 = document.getElementById("map");
+           var mapOptions1 = {
+             center: new google.maps.LatLng(28.52356, 77.194194),
+             zoom: 15
+           }
+           var map1 = new google.maps.Map(mapCanvas1, mapOptions1);
+         
+            var marker = new google.maps.Marker({
+    position: {lat: 28.52356, lng: 77.194194},
+    icon: 'img/patvan3.png',
+    map: map1
+  });
+         
+
+
+
+
+
+
+         var mapCanvas3 = document.getElementById("map2");
+                        var mapOptions3 = {
+                        center: new google.maps.LatLng(51.5, -0.2),
+                        zoom: 10
+                        }
+                     var map3 = new google.maps.Map(mapCanvas3, mapOptions3);
+         
+         var mapCanvas4 = document.getElementById("map3");
+                        var mapOptions4 = {
+                        center: new google.maps.LatLng(51.5, -0.2),
+                        zoom: 5
+                        }
+                     var map4 = new google.maps.Map(mapCanvas4, mapOptions4);
+         }
+
+         
+         
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL9ChXjEqbM2pv5UXMSjk5Mld1Xi2rrBE&callback=myMap"></script> 
+   </body>
+</html>

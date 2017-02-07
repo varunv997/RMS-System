@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <script src = "js/dashboard/dropdowntoggle.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/dashboard/dashboard.css">
+      <script src="js/jquery.min.js"></script>
+      <script src="js/highcharts.js"></script>
+      <script src="js/exporting.js"></script>
+      <script src = "js/dashboard/widget.js"></script>
+      <script src = "js/dashboard/togglebuttonform.js"></script>
+      <script src = "js/dashboard/highspline4.js"></script>
+
+   </head>
+   <body onload = "populate(); initMap(); update();">
+      <div class="navbar-bound">
+         <div class = "navbar">
+            <ul id = "nav">
+               <li id = "navli"><img src = "img/logo.png" id = "logo"/></li>
+            </ul>
+         </div>
+         <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Signed in as <strong>Administrator</strong>&nbsp;&nbsp;<img src = "img/icon1.png" width = "10"/></button>
+            <div id="myDropdown" class="dropdown-content">
+               <a href="#home"><strong>Account Settings</strong>&nbsp;&nbsp;<img src="img/db/settings.png" width="12"></a>
+               <hr>
+               <a href="#about"><strong>Sign Out</strong></a>
+            </div>
+         </div>
+      </div>
+      <div class = "containment">
+         <div class = "thirty">
+            <div class="white">
+               <table width="100%">
+                  <tr>
+                     <td><span class="details">Select Patvan:</span></td>
+                     <td>
+                        <select class="slist" id="patvan-list" onchange="pollChange(); initMap();">
+                           
+                        </select>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <br/>
+            <div class="white">
+               <table width="100%">
+                  <tr>
+                     <center><span class="details">Balance:&nbsp;</span><strong><span id="balance">2000</span></strong></center>
+                  </tr>
+                  <tr>
+                     <td><img src = "img/db/tara.jpg" width="100"/></td>
+                     <td>
+                        <table id="padtable">
+                           <tr>
+                              <td class="field"><strong>Name:</strong></td>
+                              <td class="field" id = "namejs">Raju Shrivastav</td>
+                           </tr>
+                           <tr>
+                              <td class="field"><strong>Farmer ID:</strong></td>
+                              <td class="field" id="idjs">#125432</td>
+                           </tr>
+                           <tr>
+                              <td class="field"><strong>Address:</strong></td>
+                              <td class="field" id="addjs">D123, Gopalganj, Bihar-110358</td>
+                           </tr>
+                           <tr>
+                              <td><strong>Contact:</strong></td>
+                              <td id="contactjs">9852135741</td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <br/>
+            <div class="white">
+               <table width="100%">
+                  <tr>
+                     <td><span class="details">Pump ID:&nbsp;<strong><span style="color: #c52434;" id = "pidjs">#4561232</span></strong></span></td>
+                     <td>
+                        <label class="switch">
+                           <input type="checkbox" id="toggle" checked onclick="generate();">
+                           <div class="slider round"></div>
+                        </label>
+                     </td>
+                  </tr>
+                  <tr>
+                     <table id = "padtable" width=100%>
+                        <tr>
+                           <td class="field"><strong>Last Data Received at:</strong></td>
+                           <td class="field" id="timejs">4:00 <strong>Hrs</strong></td>
+                        </tr>
+                     </table>
+                  </tr>
+               </table>
+            </div>
+            <br/>
+            <div class="white">
+               <center><span class="details" style="color: #c52434"><strong>Location</strong></span></center>
+               <div id="map" style="width:100; height:210px;"></div>
+
+            </div>
+         </div>
+         <div class="fiftyfive">
+            <a href="#">
+               <div id = "container1" style = "width: 100%; height: 145px; margin: 0 auto" onclick="openModal(this);"></div>
+            </a>
+            <a href="#">
+               <div id = "container3" style = "width: 100%; height: 145px; margin: 0 auto" onclick="openModal(this);"></div>
+            </a>
+            <a href="#">
+               <div id = "container5" style = "width: 100%; height: 145px; margin: 0 auto" onclick="openModal(this);"></div>
+            </a>
+            <a href="#">
+               <div id = "container7" style = "width: 100%; height: 145px; margin: 0 auto"  onclick="openModal(this);"></div>
+            </a>
+         </div>
+         <div class = "fifteen">
+            <table>
+               <tr  class="color1">
+                  <td>
+                     <div>
+                        >
+                        <table>
+                           <tr>
+                              <td>
+                                 <div class="cbase">
+                                    <div class="cmlayer1">
+                                       <div id="cmlayer2">
+                                          <img src = "img/db/rupee.png" width="100" height="100"/>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </td>
+                              <td>
+                                 <table>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "cvalue" id="reven">2000</span></center>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "clabel">Revenue</span></center>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr  class="color2">
+                  <td>
+                     <div>
+                        <table>
+                           <tr>
+                              <td>
+                                 <img src = "img/db/tapicon1.png" width="100" height="100"/>
+                              </td>
+                              <td>
+                                 <table>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "cvalue" id="diswa">20KL</span></center>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "clabel">Water (KL)</span></center>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr class="color1">
+                  <td>
+                     <div>
+                        <table>
+                           <tr>
+                              <td>
+                                 <div class="cbase">
+                                    <div class="ctlayer1">
+                                       <div id="ctlayer2">
+                                          <img src = "img/db/temperaturebar.png" width="100" height="100"/>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </td>
+                              <td>
+                                 <table>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "cvalue" id="temp">40&degC</span></center>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "clabel">Temperature</span></center>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr  class="color2">
+                  <td>
+                     <div>
+                        <table>
+                           <tr>
+                              <td>
+                                 <div class="cbase">
+                                    <div class="chlayer1">
+                                       <div id="chlayer2">
+                                          <img src = "img/db/icon9.png" width="100" height="100"/>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </td>
+                              <td>
+                                 <table>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "cvalue" id="humid">30%</span></center>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <center><span class = "clabel">Humidity</span></center>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      <div class = "modalContainer" id="myModal1">
+         <div class = "modalContent">
+            <div class = "modalHeader">
+               <h2>Voltage Data<span class="close">&times;</span></h2>
+               <hr/>
+            </div>
+            <div class = "modalBody" id="modalGraph">
+               <div id = "container2" style = "width:70%; height: 400px; margin: 0"></div>
+            </div>
+            <div class = "modalFooter">
+            </div>
+         </div>
+      </div>
+      <div class = "modalContainer" id="myModal2">
+         <div class = "modalContent">
+            <div class = "modalHeader">
+               <h2>Current Data<span class="close">&times;</span></h2>
+               <hr/>
+            </div>
+            <div class = "modalBody" id="modalGraph">
+               <div id = "container4" style = "width:70%; height: 400px; margin: 0"></div>
+            </div>
+            <div class = "modalFooter">
+            </div>
+         </div>
+      </div>
+      <div class = "modalContainer" id="myModal3">
+         <div class = "modalContent">
+            <div class = "modalHeader">
+               <h2>Power Data<span class="close">&times;</span></h2>
+               <hr/>
+            </div>
+            <div class = "modalBody" id="modalGraph">
+               <div id = "container6" style = "width:70%; height: 400px; margin: 0"></div>
+            </div>
+            <div class = "modalFooter">
+            </div>
+         </div>
+      </div>
+      <div class = "modalContainer" id="myModal4">
+         <div class = "modalContent">
+            <div class = "modalHeader">
+               <h2>Flow Data<span class="close">&times;</span></h2>
+               <hr/>
+            </div>
+            <div class = "modalBody" id="modalGraph">
+               <div id = "container8" style = "width:70%; height: 400px; margin: 0"></div>
+            </div>
+            <div class = "modalFooter">
+            </div>
+         </div>
+      </div>
+      <script>
+         span1 = document.getElementsByClassName("close")[0];
+         span2 = document.getElementsByClassName("close")[1];
+         span3 = document.getElementsByClassName("close")[2];
+         span4 = document.getElementsByClassName("close")[3];
+         modal1 = document.getElementById('myModal1');
+         modal2 = document.getElementById('myModal2');
+         modal3 = document.getElementById('myModal3');
+         modal4 = document.getElementById('myModal4'); 
+            // When the user clicks on <span> (x), close the modal
+         span1.onclick = function() {
+         modal1.style.display = "none";
+         }
+         span2.onclick = function() {
+         modal2.style.display = "none";
+         }
+         span3.onclick = function() {
+         modal3.style.display = "none";
+         }
+         span4.onclick = function() {
+         modal4.style.display = "none";
+         }
+         
+         // When the user clicks anywhere outside of the modal, close it
+         window.onclick = function(event) {
+         if (event.target == modal1 || event.target == modal2 || event.target == modal3 || event.target == modal4) {
+           modal1.style.display = "none";
+           modal2.style.display = "none";
+           modal3.style.display = "none";
+           modal4.style.display = "none";
+         }
+         }
+      </script>
+      <script src = "js/dashboard/dynamic.js"></script>
+      <script src = "js/dashboard/populate.js"></script>
+      <script>
+                  //var x=25.0961, y=85.3131; 
+                  //myLatLng = {lat: x, lng: y};
+                  var myLatLng;
+                     function initMap() {
+                  
+                        
+                  
+                      
+                        
+                        $.ajax ({
+                  url: 'LIVE_DATA.json',
+                  dataType: 'json',
+                  type: 'get',
+                  success: function (data) {
+                     var l = document.getElementById("patvan-list").value;
+                     
+                     var x =Number(data.LIVE[l].LATITUDE);
+                     var y =Number(data.LIVE[l].LONGITUDE);
+                     myLatLng={lat: x, lng: y};
+                     //alert(myLatLng.lat);
+                     var map = new google.maps.Map(document.getElementById('map'), {
+                     zoom: 8,
+                     center: myLatLng
+                     });
+                     
+                     var img = 'img/patvan3.png';
+                     
+                     var marker = new google.maps.Marker({
+                     position: myLatLng,
+                     map: map,
+                     icon: img,
+                     title: 'Hello World!'
+                     });
+                     //alert("Success");
+                  },
+                  error: function() {
+                     alert("Failure");
+                  }
+                  });
+                    //var x=25.0961, y=85.3131; 
+                     //myLatLng = {lat: x, lng: y};
+                  
+                  }
+                  setInterval(function() {
+                  
+                  initMap();
+                  
+                  }, 10000);       
+                  
+               </script>
+               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL9ChXjEqbM2pv5UXMSjk5Mld1Xi2rrBE&callback=initMap"></script>
+               <script>
+
+               </script>
+   </body>
+</html>
